@@ -10,8 +10,8 @@ import {
   titleErrorMessage,
   toggleTask,
   updateTask,
-  type Task,
 } from './task'
+import type { Task } from '../types/task'
 import { formatTaskCount, pluralize } from './text'
 import { formatLongDate, formatTaskDate } from './date'
 

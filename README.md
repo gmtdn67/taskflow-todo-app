@@ -1,32 +1,175 @@
-# React + TypeScript + Vite
+# TaskFlow — To-Do List
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Современное веб-приложение для управления личными задачами. Позволяет создавать, редактировать, удалять и отслеживать выполнение задач с автоматическим сохранением данных между сессиями.
 
-Currently, two official plugins are available:
+Проект разработан в рамках тестового задания на позицию **Vibe Coder** с использованием AI-инструментов.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Возможности
 
-## React Compiler
+- **Управление задачами** — создание, редактирование и удаление задач.
+- **Отслеживание выполнения** — отметка задач как выполненных и возможность вернуть их в активные.
+- **Фильтрация** — просмотр всех, активных и выполненных задач.
+- **Поиск** — быстрый поиск задач по названию.
+- **Статистика** — отображение общего количества задач, выполненных и оставшихся задач.
+- **Прогресс выполнения** — визуальный индикатор прогресса.
+- **Сохранение данных** — автоматическое сохранение задач в LocalStorage браузера.
+- **Адаптивный интерфейс** — корректное отображение на мобильных устройствах, планшетах и компьютерах.
+- **Пустые состояния** — информативный интерфейс при отсутствии задач или результатов поиска.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Технологический стек
 
-## Expanding the Oxlint configuration
+| Технология | Назначение |
+|---|---|
+| React 19 | Построение пользовательского интерфейса |
+| TypeScript | Статическая типизация |
+| Vite | Сборка и локальная разработка |
+| CSS Modules / CSS | Стилизация компонентов |
+| Lucide React | Иконки |
+| LocalStorage | Локальное хранение данных |
+| ESLint | Проверка качества кода |
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🚀 Запуск проекта
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+### Требования
+
+Перед запуском убедитесь, что установлены:
+
+- Node.js (рекомендуется LTS).
+- npm.
+
+### Установка
+
+Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/USERNAME/taskflow.git
+```
+
+Перейдите в директорию проекта:
+
+```bash
+cd taskflow
+```
+
+Установите зависимости:
+
+```bash
+npm install
+```
+
+Запустите локальный сервер разработки:
+
+```bash
+npm run dev
+```
+
+После запуска приложение будет доступно по адресу:
+
+```text
+http://localhost:5173
+```
+
+## 📦 Сборка проекта
+
+Для создания production-сборки выполните:
+
+```bash
+npm run build
+```
+
+Для локального просмотра production-сборки:
+
+```bash
+npm run preview
+```
+
+## 📁 Структура проекта
+
+```text
+src/
+├── app/
+│   ├── App.tsx
+│   └── App.css
+│
+├── components/
+│   ├── Header/
+│   ├── TaskForm/
+│   ├── TaskItem/
+│   ├── TaskList/
+│   ├── TaskFilters/
+│   ├── TaskStats/
+│   ├── EmptyState/
+│   └── ConfirmDialog/
+│
+├── hooks/
+│   ├── useTasks.ts
+│   └── useLocalStorage.ts
+│
+├── types/
+│   └── task.ts
+│
+├── utils/
+│   ├── date.ts
+│   └── task.ts
+│
+├── styles/
+│   ├── variables.css
+│   └── global.css
+│
+└── main.tsx
+```
+
+## 💾 Хранение данных
+
+Для хранения задач используется браузерный LocalStorage.
+
+Данные сохраняются автоматически при изменении списка задач и восстанавливаются при повторном открытии приложения.
+
+Структура задачи:
+
+```typescript
+interface Task {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Используется отдельный версионированный ключ хранения:
+
+```text
+taskflow_tasks_v1
+```
+
+Данные хранятся локально в браузере пользователя. Серверная часть и регистрация не требуются.
+
+## 🤖 Использование AI-инструментов
+
+В процессе разработки использовался **Cursor AI**.
+
+AI-инструмент применялся для:
+
+- Проработки структуры и архитектуры приложения.
+- Генерации React-компонентов.
+- Реализации функциональности управления задачами.
+- Разработки пользовательского интерфейса.
+- Улучшения адаптивности и пользовательского опыта.
+- Анализа кода и поиска потенциальных ошибок.
+- Подготовки документации.
+
+Результат работы AI проверялся и корректировался в процессе разработки.
+
+## 📱 Адаптивность
+
+Интерфейс приложения адаптирован для различных размеров экранов:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile.
+
+## 📄 Лицензия
+
+Проект создан в образовательных целях в рамках выполнения тестового задания.
