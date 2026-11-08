@@ -1,0 +1,27 @@
+.empty {
+  padding: 36px 16px;
+  text-align: center;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.text {
+  max-width: 360px;
+  margin: 6px auto 0;
+  color: var(--text-secondary);
+}

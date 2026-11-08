@@ -1,0 +1,103 @@
+.main {
+  width: min(var(--content), calc(100% - 32px));
+  margin: 18px auto 48px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 28px;
+  border: 1px solid rgba(234, 236, 242, 0.9);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.progressCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--surface-muted);
+}
+
+.progressTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.progressLabel {
+  font-weight: 700;
+}
+
+.progressHint {
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.percent {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.percentDone {
+  color: var(--success);
+}
+
+@media (max-width: 768px) {
+  .main {
+    width: min(var(--content), calc(100% - 24px));
+    margin-top: 12px;
+  }
+
+  .card {
+    padding: 18px;
+    gap: 18px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    width: min(var(--content), calc(100% - 16px));
+    margin-bottom: 28px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+}

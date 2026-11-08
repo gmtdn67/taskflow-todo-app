@@ -1,0 +1,22 @@
+.track {
+  height: 8px;
+  border-radius: 999px;
+  background: #eef0f6;
+  overflow: hidden;
+}
+
+.fill,
+.complete {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.fill {
+  background: var(--accent);
+}
+
+.complete {
+  background: var(--success);
+}
