@@ -36,7 +36,8 @@ function EditForm({ taskId, initialTitle, onSave, onCancel }: EditFormProps) {
     event.preventDefault()
     const result = onSave(draft)
 
-    if (!result.ok && (result.reason === 'empty' || result.reason === 'too_long')) {
+    if ( result.ok === false &&
+      (result.reason === 'empty' || result.reason === 'too_long')) {
       setError(titleErrorMessage(result.reason))
     }
   }

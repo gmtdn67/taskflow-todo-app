@@ -16,7 +16,7 @@ export function TaskForm({ onAdd }: TaskFormProps) {
     event.preventDefault()
     const result = onAdd(title)
 
-    if (!result.ok) {
+    if (result.ok === false) {
       if (result.reason === 'empty' || result.reason === 'too_long') {
         setError(titleErrorMessage(result.reason))
       }

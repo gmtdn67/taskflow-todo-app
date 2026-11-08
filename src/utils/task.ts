@@ -1,4 +1,4 @@
-import type { Task, TaskFilter, TaskStats, TitleError } from '../types/task'
+import type { Task, TaskFilter, TaskStats, TitleError, TaskListResult, TitleValidationResult } from '../types/task'
 import { normalizeSearch } from './text'
 
 export const TITLE_MAX_LENGTH = 200
@@ -13,7 +13,7 @@ export function createId(): string {
 
 export function normalizeTitle(
   title: string,
-): { ok: true; value: string } | { ok: false; reason: TitleError } {
+): TitleValidationResult {
   const value = title.trim()
 
   if (!value) return { ok: false, reason: 'empty' }
@@ -51,9 +51,12 @@ export function addTask(
   tasks: readonly Task[],
   title: string,
   meta: { id: string; now: Date },
-): { ok: true; tasks: Task[] } | { ok: false; reason: TitleError } {
+): TaskListResult {
   const normalized = normalizeTitle(title)
-  if (!normalized.ok) return normalized
+
+  if (normalized.ok === false) {
+    return { ok: false, reason: normalized.reason }
+  }
 
   return {
     ok: true,
@@ -78,9 +81,12 @@ export function updateTask(
   id: string,
   title: string,
   now: Date,
-): { ok: true; tasks: Task[] } | { ok: false; reason: TitleError | 'missing' } {
+): TaskListResult {
   const normalized = normalizeTitle(title)
-  if (!normalized.ok) return normalized
+
+  if (normalized.ok === false) {
+    return { ok: false, reason: normalized.reason }
+  }
 
   const exists = tasks.some((task) => task.id === id)
   if (!exists) return { ok: false, reason: 'missing' }

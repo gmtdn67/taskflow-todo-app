@@ -37,7 +37,9 @@ export function useTasks(): {
   const addTask = useCallback(
     (title: string): TaskMutationResult => {
       const result = insertTask(tasksRef.current, title, { id: createId(), now: new Date() })
-      if (!result.ok) return result
+      if (result.ok === false) {
+        return { ok: false, reason: result.reason }
+      }
 
       return { ok: true, saved: apply(result.tasks) }
     },
@@ -71,11 +73,15 @@ export function useTasks(): {
       if (!current) return { ok: false, reason: 'missing' }
 
       const normalized = normalizeTitle(title)
-      if (!normalized.ok) return normalized
+      if (normalized.ok === false) {
+        return { ok: false, reason: normalized.reason }
+      }
       if (normalized.value === current.title) return { ok: true, saved: true, unchanged: true }
 
       const result = replaceTaskTitle(tasksRef.current, id, normalized.value, new Date())
-      if (!result.ok) return result
+      if (result.ok === false) {
+        return { ok: false, reason: result.reason }
+      }
 
       return { ok: true, saved: apply(result.tasks) }
     },
